@@ -43,6 +43,8 @@ class ProductMenu(models.Model):
     name = fields.Char('Name')
     price = fields.Float(name="Price")
     submenu_items = fields.Many2many('submenu.items.model',string='Submenu Item Price')
+    item_image = fields.Binary(string="Image", attachment=True)
+
 
 
 class SubMenuItems(models.Model):
@@ -50,6 +52,8 @@ class SubMenuItems(models.Model):
 
     sub_menu_item = fields.Char(string ='Submenu Items')
     sub_menu_item_price = fields.Float(string='Submenu Item Price')
+    subitem_image = fields.Binary(string="Image", attachment=True)
+
 
 class ChatLLM(models.Model):
     _name = 'llm.chat'

@@ -80,7 +80,7 @@
                             <field name="reason"/>
 
                             <field name="total_invoice"/>
-                            <field name="product" widget="many2many_widget"/>
+                            <field name="product" widget="many2many_tags"/>
                             <field name="submenu_items"/>
                         </group>
 
@@ -124,6 +124,7 @@
                         </header>
                         <group>
                             <field name="name"/>
+                            <field name="item_image"/>
                             <field name="price" invisible="1"/>
                             <field name="submenu_items"/>
 
@@ -164,6 +165,8 @@
                 <form>
                     <sheet>
                         <header>
+                            <field name="subitem_image"/>
+
                         </header>
                         <group>
                             <field name="sub_menu_item"/>
