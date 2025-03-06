@@ -86,8 +86,8 @@ def odoo_connector(name: str, address: str, food_items: List[str], food_subitems
                 print('بيانات العناصر الفرعية:', subitems_data)
 
                 for subitem in subitems_data:
-                    print('bbbbbbbbbbbbbbbbbbbbbbbb',food_subitem)
-                    print('cccccccccccccccccccccccc',subitem['sub_menu_item'])
+                    print('incoming',food_subitem)
+                    print('comparing to',subitem['sub_menu_item'])
                     if subitem['sub_menu_item'] == food_subitem:
                         subitem_price = subitem['sub_menu_item_price']
                         subitem_name = subitem['sub_menu_item']
@@ -189,7 +189,9 @@ def generate_response(user_query: str, order_state: FoodOrderState) -> tuple[str
 
     التعامل مع الإضافات للطلبات:
     - إذا طلب المستخدم إضافة عناصر جديدة إلى الطلب، أضفها إلى القوائم الحالية (food_items و food_subitems)
-    - لا تستبدل العناصر الموجودة بالفعل، بل أضف العناصر الجديدة إلى القوائم
+
+     - لا تستبدل العناصر الموجودة بالفعل، بل أضف العناصر الجديدة إلى القوائم
+       -و اذا رفض اضافات اخرى اكد الطلب الحالي و اضبط "ready_to_order" إلى true
 
     اتبع عملية الطلب هذه:
     1. أولاً، تأكد من أنهم يريدون تقديم طلب
@@ -202,8 +204,7 @@ def generate_response(user_query: str, order_state: FoodOrderState) -> tuple[str
     - إذا كان لديك جميع المعلومات المطلوبة التالية (وجميعها غير فارغة):
       * الاسم
       * العنوان
-      * عنصر طعام واحد على الأقل
-      * عنصر فرعي واحد على الأقل للطعام
+      * عنصر طعام واحد على الأقل ونوعه هو العنصر الفرعي
       * عدد العناصر الفرعية يساوي عدد عناصر الطعام (كل طعام له عنصر فرعي مقابل)
     - فعندها يجب عليك ضبط "ready_to_order" إلى true والتأكد من عدم طرح أي أسئلة إضافية
     - عندما تكون كل هذه العناصر متوفرة، قدم رسالة تأكيد فقط وضع "ready_to_order" كـ true
@@ -229,6 +230,7 @@ def generate_response(user_query: str, order_state: FoodOrderState) -> tuple[str
     - address (غير فارغ)
     - food_items (قائمة غير فارغة)
     - food_subitems (قائمة غير فارغة)
+    -من الممكن ان يطلب العميل food_items و نوعه food_subitems
     - عدد العناصر في food_items يساوي عدد العناصر في food_subitems
     فاضبط "ready_to_order" إلى true
     """
@@ -304,4 +306,4 @@ async def ask_question(request: QuestionRequest):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="192.168.1.25", port=7778)
+    uvicorn.run(app, host="172.16.16.107", port=7778)
