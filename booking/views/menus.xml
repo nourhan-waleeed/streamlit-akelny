@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="booking_root_menu" name="Booking system" sequence="0"/>
+
+        <menuitem id="chat_llm_menu"
+                  name="Chat"
+                  parent="booking_root_menu"
+                  action="chat_llm_action"
+                  sequence="2"/>
+
+        <menuitem id="booking_sub_menu"
+                  name="Booking"
+                  parent="booking_root_menu"
+                  action="booking_system_action"
+                  sequence="3"/>
+
+        <menuitem id="food_sub_menu"
+                  name="Menu"
+                  parent="booking_root_menu"
+                  sequence="4"/>
+
+        <menuitem id="food_menu"
+                  name="Menu Food Items"
+                  parent="food_sub_menu"
+                  action="product_food_action"
+                  sequence="1"/>
+
+    <menuitem id="submenu_food_items"
+                  name="Submenu Food Items"
+                  parent="food_sub_menu"
+                  action="submenu_item_action"
+                  sequence="2"/>
+    </data>
+</odoo>

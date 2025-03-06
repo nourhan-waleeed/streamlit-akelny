@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="chat_llm_form">
+            <field name="name">llm.chat.form</field>
+            <field name="model">llm.chat</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+
+                            <field name="agents" widget="statusbar"
+                                   statusbar_visible="booking,analyst" options="{'clickable' : '1'}"/>
+                        </header>
+
+                        <field name="invisible_button" invisible="1"/>
+                        <notebook>
+                            <page string="Chat" name="chat">
+                                <div class="chat-interface">
+                                    <div class="chat-container">
+                                        <field name="chat" widget="html"/>
+                                        <div class="chat-input-wrapper" invisible="invisible_button==True">
+                                        <field name="box_html" class="chat-input" placeholder="Type your message here..."/>
+                                        <button name="booking_agent" type="object" class="send-button" invisible="agents=='analyst'">
+                                            <i class="fa fa-paper-plane"/>
+                                        </button>
+                                            <button name="analyst_agent" type="object" class="send-button" invisible="agents=='booking'">
+                                            <i class="fa fa-paper-plane"/>
+                                        </button>
+                                    </div>
+                                    </div>
+
+                                </div>
+                            </page>
+                            <page string="Chat History" name="chat_history">
+                                <field name="chat_history">
+                                    <tree editable="bottom">
+                                        <field name="user_html"/>
+                                        <field name="ai_html"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Chat Warehouse" name="chat_warehouse">
+                                <field name="chat_warehouse">
+                                    <tree editable="bottom">
+                                        <field name="user"/>
+                                        <field name="ai"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="chat_llm_action">
+            <field name="name">Chat AI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">llm.chat</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+
+        <record model="ir.ui.view" id="booking_form">
+            <field name="name">booking.model.form</field>
+            <field name="model">booking.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+<!--                            <button name="upload_to_sql_database" string="Upload to SQL" type="object" class="oe_highlight"/>-->
+                        </header>
+                        <group>
+                            <field name="name"/>
+                            <field name="reason"/>
+
+                            <field name="total_invoice"/>
+                            <field name="product" widget="many2many_widget"/>
+                            <field name="submenu_items"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="booking_tree">
+            <field name="name">booking.model.tree</field>
+            <field name="model">booking.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="reason"/>
+
+                    <field name="product"/>
+                    <field name="total_invoice"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="booking_system_action">
+            <field name="name">Booking System</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">booking.model</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+
+        <record model="ir.ui.view" id="product_form">
+            <field name="name">product.model.form</field>
+            <field name="model">product.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                        </header>
+                        <group>
+                            <field name="name"/>
+                            <field name="price" invisible="1"/>
+                            <field name="submenu_items"/>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_tree">
+            <field name="name">product.model.tree</field>
+            <field name="model">product.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="price" invisible="1"/>
+
+
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="product_food_action">
+            <field name="name">Food Items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.model</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+<!--submenu-->
+        <record model="ir.ui.view" id="submenu_items_form">
+            <field name="name">submenu.items.model.form</field>
+            <field name="model">submenu.items.model</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                        </header>
+                        <group>
+                            <field name="sub_menu_item"/>
+                            <field name="sub_menu_item_price"/>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_tree">
+            <field name="name">submenu.items.model.tree</field>
+            <field name="model">submenu.items.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sub_menu_item"/>
+                    <field name="sub_menu_item_price"/>
+
+
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="submenu_item_action">
+            <field name="name">Submenu Food Items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">submenu.items.model</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+    </data>
+</odoo>

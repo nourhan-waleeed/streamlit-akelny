@@ -1,0 +1,45 @@
+$o-brand-primary: #092556;
+$o-brand-primary-hover: lighten($o-brand-primary, 10%);
+// $primary-color : #092556;
+
+
+.btn-primary  {
+    background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+//     color: $primary-color;
+
+    &:hover {
+        background-color: $o-brand-primary-hover;
+        border-color: $o-brand-primary-hover;
+    }
+&:active{
+    color: $o-brand-primary;
+    border-color: $o-brand-primary;
+    background-color: white;
+    }
+&:focus{
+        background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+    color: white;
+    }
+}
+.btn-outline-primary{
+    border-color: $o-brand-primary;
+    color: $o-brand-primary;
+    &:hover{
+         background-color: $o-brand-primary;
+        border-color: $o-brand-primary;
+        }
+    }
+
+.text-primary,
+.o_main_navbar .o_menu_toggle,
+.o_main_navbar .o_menu_brand,
+ .o_main_navbar .o_navbar_apps_menu .dropdown-toggle,
+  .o_main_navbar .o_nav_entry,
+   .o_main_navbar .dropdown-toggle{
+    color: $o-brand-primary !important;
+    }
+.o_loading_indicator{
+    background-color: $o-brand-primary;
+    }

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_chat_history,chat_history,model_chat_history,,1,1,1,1
+access_llm_chat,llm_chat,model_llm_chat,,1,1,1,1
+access_chat_history_warehouse,chat_history_warehouse,model_chat_history_warehouse,,1,1,1,1
+access_booking_model,booking_model,model_booking_model,,1,1,1,1
+access_product_model,product_model,model_product_model,,1,1,1,1
+access_submenu_items_model,submenu_items_model,model_submenu_items_model,,1,1,1,1
